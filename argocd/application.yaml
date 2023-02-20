@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: aiup=robbyra98/argo-image-updater-poc
+    argocd-image-updater.argoproj.io/aiup.update-strategy: semver
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/aiup.force-update: "true"
+spec:
+  project: demo
+  source:
+    repoURL: https://github.com/Example-Collection/argocd-image-updater-example.git
+    targetRevision: main
+    path: helm/
+    helm:
+      valueFiles:
+        - ./internal-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
+

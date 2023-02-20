@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  namespace: argocd
+  name: demo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Example project for testing arogcd-image-updater
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: demo
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  
+
