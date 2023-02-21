@@ -4,5 +4,5 @@ helm:
     value: robbyra98/argo-image-updater-poc
     forcestring: true
   - name: image.tag
-    value: 0.0.2
+    value: 0.0.3
     forcestring: true
