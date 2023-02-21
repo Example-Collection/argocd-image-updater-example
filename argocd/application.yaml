@@ -6,8 +6,7 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: aiup=robbyra98/argo-image-updater-poc
     argocd-image-updater.argoproj.io/aiup.update-strategy: semver
-    argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/aiup.force-update: "true"
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-cred
 spec:
   project: demo
   source:
@@ -20,8 +19,8 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: demo
-#  syncPolicy:
-#    automated:
-#      prune: true
-#      selfHeal: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 
