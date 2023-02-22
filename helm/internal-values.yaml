@@ -8,7 +8,7 @@ deployment:
   name: demo
 image:
   name: robbyra98/argo-image-updater-poc
-  tag: 0.0.0
+  tag: 0.0.4
   pullPolicy: IfNotPresent
 container:
   name: demo
